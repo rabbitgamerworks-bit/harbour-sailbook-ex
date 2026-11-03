@@ -37,7 +37,7 @@ mb2 -t SailfishOS-5.2.0.15-aarch64 build
 mb2 -t SailfishOS-5.2.0.15-i486 build
 ```
 
-Requires Sailfish OS 4.4+ (Sailjail permission `Internet`).
+Built against Sailfish OS 5.2 (Sailjail permission `Internet`). Tested in the Sailfish OS 5.1 emulator; not yet tested on real hardware.
 
 ## License
 GNU General Public License v3.0. Based on the original Sailbook by Dylan Van Assche and contributors.
