@@ -1,6 +1,6 @@
 Name: harbour-sailbook
 Summary: Sailbook
-Version: 11.1
+Version: 12.0
 Release: 0
 # The contents of the Group field should be one of the groups listed here:
 # http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
@@ -12,7 +12,7 @@ License: GPLv3
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Sailbook is an unofficial Facebook client for Sailfish OS
+  Sailbook: search-only m.facebook.com wrapper for Sailfish OS (no feed)
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution
@@ -24,7 +24,6 @@ Builder: qtc5
 # This is the preferred way of specifying build dependencies for your package.
 PkgConfigBR:
   - sailfishapp >= 1.0.2
-  - nemonotifications-qt5
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
@@ -36,13 +35,14 @@ PkgConfigBR:
 # Runtime dependencies which are not automatically detected
 Requires:
   - sailfishsilica-qt5 >= 0.10.9
-  - nemo-qml-plugin-dbus-qt5
   - nemo-qml-plugin-configuration-qt5
-  - nemo-qml-plugin-notifications-qt5
+  - sailfish-components-webview-qt5
+  - sailfish-components-webview-qt5-popups
+  - sailfish-components-webview-qt5-pickers
 
 # All installed files
 Files:
-  - '%{_bindir}'
+  - '%{_bindir}/%{name}'
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'

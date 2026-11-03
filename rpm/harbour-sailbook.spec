@@ -13,7 +13,7 @@ Name:       harbour-sailbook
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Sailbook
-Version:    11.1
+Version:    12.0
 Release:    0
 Group:      Qt/Qt
 License:    GPLv3
@@ -21,18 +21,18 @@ URL:        https://github.com/DylanVanAssche/harbour-sailbook
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-sailbook.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   nemo-qml-plugin-dbus-qt5
 Requires:   nemo-qml-plugin-configuration-qt5
-Requires:   nemo-qml-plugin-notifications-qt5
+Requires:   sailfish-components-webview-qt5
+Requires:   sailfish-components-webview-qt5-popups
+Requires:   sailfish-components-webview-qt5-pickers
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
-BuildRequires:  pkgconfig(nemonotifications-qt5)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Sailbook is an unofficial Facebook client for Sailfish OS
+Sailbook: search-only m.facebook.com wrapper for Sailfish OS (no feed)
 
 
 %prep
@@ -68,7 +68,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}
+%{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png

@@ -4,3 +4,8 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-sailbook
 Exec=harbour-sailbook
 Name=Sailbook
+
+[X-Sailjail]
+Permissions=Internet;WebView
+OrganizationName=org.sailbook
+ApplicationName=harbour-sailbook

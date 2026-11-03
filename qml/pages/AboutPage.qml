@@ -1,86 +1,39 @@
-import QtQuick 2.2
+import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "../js/util.js" as Util
-import "../components"
 
 Page {
     SilicaFlickable {
         anchors.fill: parent
-        contentHeight: aboutColumn.height
+        contentHeight: column.height
 
         VerticalScrollDecorator {}
 
         Column {
-            id: aboutColumn
-            width: parent.width
+            id: column
+            x: Theme.horizontalPageMargin
+            width: parent.width - 2 * x
             spacing: Theme.paddingLarge
 
             PageHeader { title: qsTr("About") }
 
-            SectionHeader { text: qsTr("What's") + " Sailbook?" }
-            TextLabel { labelText: qsTr("Sailbook is an unofficial Facebook client for Sailfish OS.") }
-
-            SectionHeader { text: qsTr("Privacy & licensing") }
-            TextLabel { labelText: "Sailbook " + qsTr("is free software released under the GNU General Public License (GPL), version 3 or later.") }
-
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("GitHub")
-                iconSource: "qrc:///images/icon-github.png"
-                onClicked: { Qt.openUrlExternally("https://github.com/DylanVanAssche/harbour-sailbook");
-                }
+            Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                text: qsTr("Sailbook is a search-only wrapper around m.facebook.com for Sailfish OS. There is no feed: only search, with limited scrolling.")
             }
 
-            SectionHeader { text: qsTr("Developers") }
-
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Rudi Timmermans")
-                iconSource: "qrc:///images/image-rudi.png"
-                onClicked: { Qt.openUrlExternally("https://twitter.com/Xray20001");
-                }
+            Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                color: Theme.secondaryColor
+                text: qsTr("Free software released under the GNU General Public License (GPL), version 3 or later. Based on the original Sailbook by Dylan Van Assche and contributors.")
             }
 
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Dylan Van Assche")
-                iconSource: "qrc:///images/image-dylan.png"
-                onClicked: { Qt.openUrlExternally("https://www.github.com/modulebaan");
-                }
+            Label {
+                width: parent.width
+                color: Theme.secondaryHighlightColor
+                text: app.appName + " v" + app.version
             }
-
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Matthias Weiß")
-                iconSource: "qrc:///images/image-matthias.png"
-                onClicked: { Qt.openUrlExternally("https://github.com/codeandcreate");
-                }
-            }
-
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Donate with Paypal")
-                iconSource: "qrc:///images/icon-paypal.png"
-                onClicked: { Qt.openUrlExternally("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6Z4P9MAAD996W");
-                }
-            }
-
-            SectionHeader { text: qsTr("Translators") }
-
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Translations")
-                iconSource: "qrc:///images/icon-trans.png"
-                onClicked: pageStack.push(Qt.resolvedUrl("../pages/TranslationsPage.qml"))
-            }
-
-            SectionHeader { text: qsTr("Icons") }
-            TextLabel { labelText: qsTr("Sailbook icons made by Alain Molteni.") }
-
-            SectionHeader { text: qsTr("Version") }
-            TextLabel { labelText: app.appName + " v" + app.version }
-
-            Item { width: parent.width; height: Theme.itemSizeMedium } //Spacer
         }
     }
 }

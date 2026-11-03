@@ -8,6 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Nov 03 2026 Sailbook contributors 12.0-0
+- Rewritten as a search-only wrapper around m.facebook.com (Sailfish.WebView / Gecko)
+- Dropped QtWebKit, user-agent spoofing, injected themes, notification scraping and video player
+- No feed: feed pages redirect to search, page scrolling is limited
+- Removed logout / account UI
+
 * Sat Nov 2 2019 Dylan Van Assche <dylan.van.assche@protonmail.com> 11.1-0
 - [QA] Fixed version number to comply with Jolla Harbour
 - [TRANSLATIONS] Fixed Chinese translations
