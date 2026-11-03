@@ -11,21 +11,25 @@ Sailbook is a **search-only** Facebook client for Sailfish OS, in the classic Sa
 *Ożywione przez Claude* (revived by Claude).
 
 ## What it is
-- **Classic Sailbook look, rendered natively in Silica**: Facebook-style white content,
-  the blue Sailbook menu bar with the original icons, the original themes
-  (Facebook, Night, Ambience) and the original cover artwork. No web page, no WebView.
-- **No feed.** The news feed button shows an empty page; content only appears when you search.
-- **Removed as addictive**: news feed, messages, notifications and all unread counters
-  (menu bar and cover). Groups are gone too (not searchable without an account).
-- **Limited scrolling.** Results stop after a configurable number of screens
-  (Settings, default 3 screens = 18 results).
-- **No Facebook account needed.** Facebook only lets logged-in users search, so Sailbook
-  finds pages and people through their public Facebook usernames on
+This fork keeps the **original Sailbook app** (its menu bar, loading screen, pulldown
+menu, settings dialog, about/translators pages, cover and themes, restored from
+[DylanVanAssche/harbour-sailbook](https://github.com/DylanVanAssche/harbour-sailbook))
+and changes what it shows:
+
+- **No account, no login, ever.** Sailbook never connects to Facebook or any other
+  Meta service, so there is nothing to log into and nothing that could get an account
+  banned. Pages and people are found through their public Facebook usernames on
   [Wikidata](https://www.wikidata.org/wiki/Property:P2013) (one SPARQL query, CC0 data,
   pictures from Wikimedia Commons). This covers organisations and public figures
-  (e.g. universities, cities, media), not private profiles. No scraping, no browser
-  user-agent spoofing: requests identify themselves as Sailbook.
-- English and Polish UI.
+  (universities, cities, media...), not private profiles or posts.
+- **No news feed.** The feed button shows an empty page; content only appears when you search.
+- **Removed**: messenger, notifications, events, groups, the Facebook settings button,
+  logout, the video player and all unread counters (menu bar and cover).
+- **Limited scrolling.** Results stop after a configurable number of screens
+  (Settings > Limits, default 3 screens = 18 results).
+- The content is drawn natively in Silica instead of the Facebook web page;
+  requests identify themselves honestly as Sailbook (no user-agent spoofing).
+- Polish translation added; the original translations are kept.
 
 ## Build
 With the Sailfish SDK (or the `coderus/sailfishos-platform-sdk` Docker image):

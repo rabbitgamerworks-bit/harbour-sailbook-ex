@@ -2,22 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pl">
 <context>
-    <name>SearchPage</name>
+    <name>SearchView</name>
     <message>
-        <source>Too many searches right now, try again in a minute.</source>
-        <translation>Zbyt wiele wyszukiwań, spróbuj ponownie za minutę.</translation>
+        <source>No network</source>
+        <translation>Brak sieci</translation>
     </message>
     <message>
-        <source>Search failed (%1). Check your connection.</source>
-        <translation>Wyszukiwanie nie powiodło się (%1). Sprawdź połączenie.</translation>
-    </message>
-    <message>
-        <source>Unexpected answer from the server.</source>
-        <translation>Nieoczekiwana odpowiedź serwera.</translation>
-    </message>
-    <message>
-        <source>Search Facebook</source>
-        <translation>Szukaj na Facebooku</translation>
+        <source>Search failed (%1)</source>
+        <translation>Wyszukiwanie nie powiodło się (%1)</translation>
     </message>
     <message>
         <source>About</source>
@@ -30,6 +22,14 @@
     <message>
         <source>Refresh</source>
         <translation>Odśwież</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>Wstecz</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Szukaj</translation>
     </message>
     <message>
         <source>People</source>
@@ -53,6 +53,92 @@
     </message>
 </context>
 <context>
+    <name>CoverPage</name>
+    <message>
+        <source>Search</source>
+        <translation>Wyniki</translation>
+    </message>
+    <message>
+        <source>results</source>
+        <translation>wyszukiwania</translation>
+    </message>
+</context>
+<context>
+    <name>AboutPage</name>
+    <message>
+        <source>About</source>
+        <translation>O aplikacji</translation>
+    </message>
+    <message>
+        <source>What's</source>
+        <translation>Czym jest</translation>
+    </message>
+    <message>
+        <source>Sailbook is an unofficial Facebook client for Sailfish OS.</source>
+        <translation>Sailbook to nieoficjalny klient Facebooka dla Sailfish OS.</translation>
+    </message>
+    <message>
+        <source>This fork only searches. There is no login, no news feed, no messenger and no notifications, and scrolling is limited. Sailbook never connects to Facebook: pages and people are found through their public Facebook addresses on Wikidata, so no account is needed and nothing can get an account banned.</source>
+        <translation>Ten fork służy tylko do wyszukiwania. Nie ma logowania, tablicy aktualności, messengera ani powiadomień, a przewijanie jest ograniczone. Sailbook nigdy nie łączy się z Facebookiem: strony i osoby są wyszukiwane po ich publicznych adresach na Facebooku zapisanych w Wikidanych, więc konto nie jest potrzebne i nic nie grozi banem konta.</translation>
+    </message>
+    <message>
+        <source>Data: Wikidata (CC0). Pictures: Wikimedia Commons.</source>
+        <translation>Dane: Wikidane (CC0). Zdjęcia: Wikimedia Commons.</translation>
+    </message>
+    <message>
+        <source>GitHub</source>
+        <translation>GitHub</translation>
+    </message>
+    <message>
+        <source>Privacy &amp; licensing</source>
+        <translation>Prywatność i licencja</translation>
+    </message>
+    <message>
+        <source>is free software released under the GNU General Public License (GPL), version 3 or later.</source>
+        <translation>jest wolnym oprogramowaniem na licencji GNU General Public License (GPL) w wersji 3 lub nowszej.</translation>
+    </message>
+    <message>
+        <source>Developers</source>
+        <translation>Twórcy</translation>
+    </message>
+    <message>
+        <source>Rudi Timmermans</source>
+        <translation>Rudi Timmermans</translation>
+    </message>
+    <message>
+        <source>Dylan Van Assche</source>
+        <translation>Dylan Van Assche</translation>
+    </message>
+    <message>
+        <source>Matthias Weiß</source>
+        <translation>Matthias Weiß</translation>
+    </message>
+    <message>
+        <source>Donate with Paypal</source>
+        <translation>Wesprzyj przez PayPal</translation>
+    </message>
+    <message>
+        <source>Translators</source>
+        <translation>Tłumacze</translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation>Tłumaczenia</translation>
+    </message>
+    <message>
+        <source>Icons</source>
+        <translation>Ikony</translation>
+    </message>
+    <message>
+        <source>Sailbook icons made by Alain Molteni.</source>
+        <translation>Ikony Sailbooka wykonał Alain Molteni.</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Wersja</translation>
+    </message>
+</context>
+<context>
     <name>ResultPage</name>
     <message>
         <source>About</source>
@@ -70,12 +156,12 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <source>About</source>
-        <translation>O aplikacji</translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Ustawienia</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Wygląd</translation>
     </message>
     <message>
         <source>Theme</source>
@@ -90,35 +176,75 @@
         <translation>Facebook</translation>
     </message>
     <message>
-        <source>Night</source>
-        <translation>Nocny</translation>
+        <source>Facebook nightmode</source>
+        <translation>Facebook nocny</translation>
+    </message>
+    <message>
+        <source>Back button in</source>
+        <translation>Przycisk wstecz w</translation>
+    </message>
+    <message>
+        <source>Pulldown menu</source>
+        <translation>Menu rozwijanym</translation>
+    </message>
+    <message>
+        <source>Menu bar</source>
+        <translation>Pasku menu</translation>
+    </message>
+    <message>
+        <source>Show Facebook feed button</source>
+        <translation>Pokaż przycisk aktualności</translation>
+    </message>
+    <message>
+        <source>There is no news feed: this button only clears the search.</source>
+        <translation>Nie ma tablicy aktualności: ten przycisk tylko czyści wyszukiwanie.</translation>
+    </message>
+    <message>
+        <source>Show Facebook friends button</source>
+        <translation>Pokaż przycisk znajomych</translation>
+    </message>
+    <message>
+        <source>Searches people only.</source>
+        <translation>Szuka tylko osób.</translation>
+    </message>
+    <message>
+        <source>Show Facebook search button</source>
+        <translation>Pokaż przycisk wyszukiwania</translation>
+    </message>
+    <message>
+        <source>Show Facebook liked pages button</source>
+        <translation>Pokaż przycisk stron</translation>
+    </message>
+    <message>
+        <source>Searches pages only.</source>
+        <translation>Szuka tylko stron.</translation>
+    </message>
+    <message>
+        <source>Show Facebook refresh pulldown menu</source>
+        <translation>Pokaż odświeżanie w menu rozwijanym</translation>
+    </message>
+    <message>
+        <source>Limits</source>
+        <translation>Ograniczenia</translation>
     </message>
     <message>
         <source>Scroll limit (screens)</source>
         <translation>Limit przewijania (ekrany)</translation>
     </message>
     <message>
-        <source>Search results stop after this many screens, so they never turn into an endless feed.</source>
-        <translation>Wyniki kończą się po tylu ekranach, więc nigdy nie zamienią się w niekończący się feed.</translation>
+        <source>Search results stop after this many screens, so they never turn into an endless feed. Sailbook has no news feed, messenger or notifications and never asks for a Facebook account.</source>
+        <translation>Wyniki kończą się po tylu ekranach, więc nigdy nie zamienią się w niekończący się feed. Sailbook nie ma tablicy aktualności, messengera ani powiadomień i nigdy nie prosi o konto na Facebooku.</translation>
     </message>
 </context>
 <context>
-    <name>AboutPage</name>
+    <name>TranslationsPage</name>
     <message>
-        <source>About</source>
-        <translation>O aplikacji</translation>
+        <source>Translation Platform</source>
+        <translation>Platforma tłumaczeń</translation>
     </message>
     <message>
-        <source>Sailbook is a search-only Facebook client for Sailfish OS in the classic Sailbook look. There is no news feed, no messages and no notifications: only search, with limited scrolling. No Facebook account is needed: pages and people are found through their public Facebook links on Wikidata.</source>
-        <translation>Sailbook to klient Facebooka dla Sailfish OS w klasycznym wyglądzie Sailbooka, służący tylko do wyszukiwania. Nie ma tablicy aktualności, wiadomości ani powiadomień: tylko wyszukiwarka z ograniczonym przewijaniem. Konto na Facebooku nie jest potrzebne: strony i osoby są wyszukiwane po ich publicznych adresach na Facebooku zapisanych w Wikidanych.</translation>
-    </message>
-    <message>
-        <source>Free software released under the GNU General Public License (GPL), version 3 or later. Based on the original Sailbook by Dylan Van Assche and contributors.</source>
-        <translation>Wolne oprogramowanie na licencji GNU General Public License (GPL) w wersji 3 lub nowszej. Na podstawie oryginalnego Sailbooka autorstwa Dylana Van Assche i współtwórców.</translation>
-    </message>
-    <message>
-        <source>Data: Wikidata (CC0). Pictures: Wikimedia Commons. Icons: the original Sailbook icons by Alain Molteni.</source>
-        <translation>Dane: Wikidane (CC0). Zdjęcia: Wikimedia Commons. Ikony: oryginalne ikony Sailbooka autorstwa Alaina Molteniego.</translation>
+        <source>Translators</source>
+        <translation>Tłumacze</translation>
     </message>
 </context>
 </TS>

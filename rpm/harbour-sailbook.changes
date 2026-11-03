@@ -9,10 +9,11 @@
 # - Summary of changes
 
 * Tue Nov 03 2026 Sailbook contributors 13.0-0
-- Classic Sailbook look recreated natively: Facebook-style content, blue menu bar,
-  original icons and themes (Facebook, Night, Ambience), classic cover art
+- Original Sailbook app restored (menu bar, loading screen, pulldown menu, settings
+  dialog, about/translators pages, cover, themes); content drawn natively in Silica
 - Search without a Facebook account (public Facebook links on Wikidata)
-- No news feed, messages, notifications or counters; results capped by scroll limit
+- No login and no connection to Meta at all; messenger, notifications, events,
+  groups, counters removed; results capped by scroll limit
 - "Ożywione przez Claude" 
 
 * Tue Nov 03 2026 Sailbook contributors 12.0-0

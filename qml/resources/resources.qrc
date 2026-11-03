@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/icon-back.svg</file>
+        <file>images/icon-belgium.png</file>
+        <file>images/icon-brasil.png</file>
+        <file>images/icon-china.png</file>
+        <file>images/icon-cover.svg</file>
+        <file>images/icon-external.png</file>
+        <file>images/icon-finland.png</file>
+        <file>images/icon-french.png</file>
+        <file>images/icon-germany.png</file>
+        <file>images/icon-github.png</file>
+        <file>images/icon-hungary.png</file>
+        <file>images/icon-italy.png</file>
+        <file>images/icon-newsfeed.svg</file>
+        <file>images/icon-pages.svg</file>
+        <file>images/icon-paypal.png</file>
+        <file>images/icon-requests.svg</file>
+        <file>images/icon-search.svg</file>
+        <file>images/icon-spain.png</file>
+        <file>images/icon-sweden.png</file>
+        <file>images/icon-trans.png</file>
+        <file>images/image-dylan.png</file>
+        <file>images/image-matthias.png</file>
+        <file>images/image-rudi.png</file>
+    </qresource>
+</RCC>

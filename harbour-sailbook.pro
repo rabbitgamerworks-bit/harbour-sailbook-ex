@@ -9,20 +9,26 @@ DEFINES += APP_VERSION=\\\"$${VERSION}\\\"
 SOURCES += src/harbour-sailbook.cpp
 
 DISTFILES += \
-    qml/harbour-sailbook.qml \
-    qml/cover/CoverPage.qml \
-    qml/pages/SearchPage.qml \
-    qml/pages/ResultPage.qml \
-    qml/pages/SettingsPage.qml \
-    qml/pages/AboutPage.qml \
+    qml/components/IconTextButton.qml \
     qml/components/NavigationButton.qml \
     qml/components/PagePicture.qml \
+    qml/components/PlaceholderWebview.qml \
+    qml/components/SearchView.qml \
+    qml/components/TextLabel.qml \
+    qml/cover/CoverPage.qml \
+    qml/harbour-sailbook.qml \
+    qml/js/util.js \
     qml/js/wikidata.js \
-    qml/js/themes.js \
-    qml/images/*.svg \
+    qml/pages/AboutPage.qml \
+    qml/pages/FirstPage.qml \
+    qml/pages/ResultPage.qml \
+    qml/pages/SettingsPage.qml \
+    qml/pages/TranslationsPage.qml \
     rpm/harbour-sailbook.spec \
     rpm/harbour-sailbook.changes \
     harbour-sailbook.desktop
+
+RESOURCES += qml/resources/resources.qrc
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 

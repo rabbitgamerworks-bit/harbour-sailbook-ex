@@ -48,6 +48,11 @@ function buildUrl(query, filter, limit, language) {
     return ENDPOINT + "?format=json&query=" + encodeURIComponent(buildQuery(query, filter, limit, language));
 }
 
+// Sailbook never links to Meta services (no login screens, no tracking).
+function _isMeta(url) {
+    return /^https?:\/\/([^\/]*\.)?(facebook\.com|fb\.com|fb\.me|messenger\.com|instagram\.com|threads\.net|meta\.com|whatsapp\.com)(\/|$)/i.test(String(url));
+}
+
 function _v(binding, key) {
     return binding[key] ? String(binding[key].value) : "";
 }
@@ -88,8 +93,7 @@ function parse(json, md5, limit) {
                 name: _v(b, "itemLabel") || id,
                 description: _v(b, "itemDescription"),
                 facebook: _v(b, "fb"),
-                facebookUrl: "https://www.facebook.com/" + encodeURIComponent(_v(b, "fb")),
-                website: _v(b, "web"),
+                website: _isMeta(_v(b, "web")) ? "" : _v(b, "web"),
                 founded: year ? String(Number(year[1])) : "",
                 category: "",
                 place: _v(b, "placeLabel"),
