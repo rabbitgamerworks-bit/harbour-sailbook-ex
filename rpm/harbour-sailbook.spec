@@ -29,7 +29,8 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Sailbook: native search-only Facebook client UI for Sailfish OS (no feed)
+Sailbook: search-only Facebook client for Sailfish OS.
+No feed, no account needed. Revived by Claude.
 
 
 %prep

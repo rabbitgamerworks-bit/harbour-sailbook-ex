@@ -14,12 +14,12 @@ Page {
             width: parent.width - 2 * x
             spacing: Theme.paddingLarge
 
-            PageHeader { title: qsTr("About") }
+            PageHeader { title: qsTr("About"); description: "Ożywione przez Claude" }
 
             Label {
                 width: parent.width
                 wrapMode: Text.Wrap
-                text: qsTr("Sailbook is a native, search-only Facebook client UI for Sailfish OS. There is no feed: only search, with limited scrolling. This version is a mockup that shows sample data.")
+                text: qsTr("Sailbook is a search-only Facebook client for Sailfish OS in the classic Sailbook look. There is no news feed, no messages and no notifications: only search, with limited scrolling. No Facebook account is needed: pages and people are found through their public Facebook links on Wikidata.")
             }
 
             Label {
@@ -31,8 +31,15 @@ Page {
 
             Label {
                 width: parent.width
+                wrapMode: Text.Wrap
+                color: Theme.secondaryColor
+                text: qsTr("Data: Wikidata (CC0). Pictures: Wikimedia Commons. Icons: the original Sailbook icons by Alain Molteni.")
+            }
+
+            Label {
+                width: parent.width
                 color: Theme.secondaryHighlightColor
-                text: app.appName + " v" + app.version
+                text: app.appName + " v" + app.version + " · Ożywione przez Claude"
             }
         }
     }

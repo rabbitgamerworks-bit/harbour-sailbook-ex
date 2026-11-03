@@ -1,28 +1,29 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "../js/themes.js" as Themes
 
-// Bottom bar button in the style of the classic Sailbook menu bar.
+// Classic Sailbook menu bar button (same size and look as the original).
+// The notification counters of the original are gone on purpose.
 BackgroundItem {
-    property alias iconSource: icon.source
+    property string iconSource
     property bool active
+    property color highlight
 
     height: parent.height
-    highlightedColor: Themes.barHighlight(settings.theme, Theme)
+    highlightedColor: highlight
 
     Rectangle {
         anchors.fill: parent
-        color: Themes.barHighlight(settings.theme, Theme)
-        visible: active
+        color: highlight
+        opacity: active ? 1.0 : 0.0
+        Behavior on opacity { FadeAnimation {} }
     }
 
-    HighlightImage {
-        id: icon
-        anchors.centerIn: parent
-        width: Theme.iconSizeMedium
+    Image {
+        width: Theme.iconSizeSmallPlus
         height: width
         sourceSize { width: width; height: height }
-        color: Themes.icon(settings.theme, Theme)
-        highlightColor: color
+        anchors.centerIn: parent
+        source: iconSource
+        asynchronous: true
     }
 }

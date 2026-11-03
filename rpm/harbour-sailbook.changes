@@ -9,10 +9,11 @@
 # - Summary of changes
 
 * Tue Nov 03 2026 Sailbook contributors 13.0-0
-- Native Silica search UI instead of the m.facebook.com web page
-- Classic Sailbook menu bar, icons and themes (Ambience, Facebook, Night) restored
-- Search results are capped (scroll limit), still no feed
-- Mockup: sample data only, backend prepared for facebook-gql-scraper style results
+- Classic Sailbook look recreated natively: Facebook-style content, blue menu bar,
+  original icons and themes (Facebook, Night, Ambience), classic cover art
+- Search without a Facebook account (public Facebook links on Wikidata)
+- No news feed, messages, notifications or counters; results capped by scroll limit
+- "Ożywione przez Claude" 
 
 * Tue Nov 03 2026 Sailbook contributors 12.0-0
 - Rewritten as a search-only wrapper around m.facebook.com (Sailfish.WebView / Gecko)

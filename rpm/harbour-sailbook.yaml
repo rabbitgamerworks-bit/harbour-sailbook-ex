@@ -12,7 +12,8 @@ License: GPLv3
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Sailbook: native search-only Facebook client UI for Sailfish OS (no feed)
+  Sailbook: search-only Facebook client for Sailfish OS.
+  No feed, no account needed. Revived by Claude.
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution

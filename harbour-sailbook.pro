@@ -1,6 +1,7 @@
 TARGET = harbour-sailbook
 
 CONFIG += sailfishapp sailfishapp_i18n
+QT += network
 
 # APP_VERSION retrieved from .spec file
 DEFINES += APP_VERSION=\\\"$${VERSION}\\\"
@@ -14,9 +15,9 @@ DISTFILES += \
     qml/pages/ResultPage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/AboutPage.qml \
-    qml/components/Avatar.qml \
     qml/components/NavigationButton.qml \
-    qml/js/backend.js \
+    qml/components/PagePicture.qml \
+    qml/js/wikidata.js \
     qml/js/themes.js \
     qml/images/*.svg \
     rpm/harbour-sailbook.spec \
@@ -26,6 +27,7 @@ DISTFILES += \
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 TRANSLATIONS += \
+    translations/harbour-sailbook-pl.ts \
     translations/harbour-sailbook-de.ts \
     translations/harbour-sailbook-fi.ts \
     translations/harbour-sailbook-it.ts \
