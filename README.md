@@ -27,8 +27,11 @@ and changes what it shows:
   logout, the video player and all unread counters (menu bar and cover).
 - **Limited scrolling.** Results stop after a configurable number of screens
   (Settings > Limits, default 3 screens = 18 results).
-- The content is drawn natively in Silica instead of the Facebook web page;
-  requests identify themselves honestly as Sailbook (no user-agent spoofing).
+- **Original look, without the web page.** Default theme is "Facebook" (blue bar,
+  as in the original store screenshots), the original start-up screen is back, and
+  the content is drawn natively to look like the Facebook mobile site the original
+  showed inside (white cards, round pictures; dark with the night theme).
+  Requests identify themselves honestly as Sailbook (no user-agent spoofing).
 - Polish translation added; the original translations are kept.
 
 ## Build

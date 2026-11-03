@@ -1,13 +1,19 @@
-import QtQuick 2.2
+import QtQuick 2.6
 import Sailfish.Silica 1.0
 import "../components"
+import "../js/util.js" as Util
 import "../js/wikidata.js" as Wd
 
-// A page or person found by the search, in the style of the original
-// Sailbook pages. The Facebook address is plain text on purpose: nothing in
-// Sailbook opens Facebook, so there is never a login screen.
+// A page or person found by the search, drawn like a page on the Facebook
+// mobile site inside the original Sailbook: cover photo, picture, name,
+// category and an About card. No posts (they need an account).
+// The Facebook address is plain text: nothing in Sailbook opens Facebook,
+// so there is never a login screen.
 Page {
     property var item
+    property var page: Util.getPagePalette(settings.theme)
+
+    Rectangle { anchors.fill: parent; color: page.page }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -18,74 +24,105 @@ Page {
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingLarge
 
-            PageHeader { title: item.name }
-
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 2 * Theme.horizontalPageMargin
-                height: status === Image.Ready ? width * 0.5 : 0
-                source: item.cover
-                fillMode: Image.PreserveAspectCrop
-                asynchronous: true
-                clip: true
+            // Cover photo
+            Rectangle {
+                width: parent.width
+                height: width * 0.5
+                color: Util.getBackgroundColor(1)
+                Image {
+                    anchors.fill: parent
+                    source: item.cover
+                    fillMode: Image.PreserveAspectCrop
+                    asynchronous: true
+                    clip: true
+                }
             }
 
-            Row {
-                x: Theme.horizontalPageMargin
-                spacing: Theme.paddingLarge
-
-                PagePicture {
-                    width: Theme.itemSizeExtraLarge
-                    source: item.picture
-                    name: item.name
-                }
+            Rectangle {
+                width: parent.width
+                height: card.height + 2 * Theme.paddingLarge
+                color: page.card
 
                 Column {
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: column.width - 2 * Theme.horizontalPageMargin - Theme.itemSizeExtraLarge - Theme.paddingLarge
-                    Label {
+                    id: card
+                    x: Theme.horizontalPageMargin
+                    y: Theme.paddingLarge
+                    width: parent.width - 2 * x
+                    spacing: Theme.paddingSmall
+
+                    PagePicture {
+                        width: Theme.itemSizeHuge
+                        source: item.picture
+                        name: item.name
+                    }
+                    Text {
                         width: parent.width
                         wrapMode: Text.WordWrap
-                        color: Theme.highlightColor
+                        color: page.text
+                        font.pixelSize: Theme.fontSizeLarge
+                        font.bold: true
                         text: item.name
                     }
-                    Label {
+                    Text {
                         width: parent.width
                         wrapMode: Text.WordWrap
+                        color: page.secondary
                         font.pixelSize: Theme.fontSizeSmall
-                        color: Theme.secondaryHighlightColor
                         text: Wd.subtitle(item)
                         visible: text.length > 0
                     }
                 }
             }
 
-            SectionHeader { text: qsTr("About") }
-            TextLabel { labelText: item.description; visible: item.description.length > 0 }
-            TextLabel {
-                labelFontSize: Theme.fontSizeSmall
-                color: Theme.secondaryColor
-                labelText: qsTr("Founded in %1").arg(item.founded)
-                visible: item.founded.length > 0
+            Item { width: parent.width; height: Theme.paddingMedium }
+
+            Rectangle {
+                width: parent.width
+                height: about.height + 2 * Theme.paddingLarge
+                color: page.card
+
+                Column {
+                    id: about
+                    x: Theme.horizontalPageMargin
+                    y: Theme.paddingLarge
+                    width: parent.width - 2 * x
+                    spacing: Theme.paddingMedium
+
+                    Text { color: page.text; font.pixelSize: Theme.fontSizeSmall; font.bold: true; text: qsTr("About") }
+                    Text {
+                        width: parent.width; wrapMode: Text.WordWrap; color: page.text
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: item.description; visible: text.length > 0
+                    }
+                    Text {
+                        width: parent.width; wrapMode: Text.WordWrap; color: page.secondary
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: qsTr("Founded in %1").arg(item.founded); visible: item.founded.length > 0
+                    }
+                    Text {
+                        width: parent.width; wrapMode: Text.WrapAnywhere; color: page.secondary
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: "facebook.com/" + item.facebook
+                    }
+                    Text {
+                        width: parent.width; wrapMode: Text.WrapAnywhere; color: page.link
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: item.website.replace(/^https?:\/\//, "").replace(/\/$/, "")
+                        visible: item.website.length > 0
+                        MouseArea { anchors.fill: parent; onClicked: Qt.openUrlExternally(item.website) }
+                    }
+                }
             }
 
-            SectionHeader { text: "Facebook" }
-            TextLabel { labelFontSize: Theme.fontSizeSmall; labelText: "facebook.com/" + item.facebook }
-
-            IconTextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                visible: item.website.length > 0
-                text: item.website.replace(/^https?:\/\//, "").replace(/\/$/, "")
-                iconSource: "qrc:///images/icon-external.png"
-                onClicked: Qt.openUrlExternally(item.website)
-            }
-
-            TextLabel {
-                labelFontSize: Theme.fontSizeTiny
-                color: Theme.secondaryColor
-                labelText: qsTr("Public info from Wikidata, photo from Wikimedia Commons. No Facebook account used.")
+            Text {
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2 * x
+                topPadding: Theme.paddingMedium
+                wrapMode: Text.WordWrap
+                color: page.secondary
+                font.pixelSize: Theme.fontSizeTiny
+                text: qsTr("Public info from Wikidata, photo from Wikimedia Commons. No Facebook account used.")
             }
         }
     }

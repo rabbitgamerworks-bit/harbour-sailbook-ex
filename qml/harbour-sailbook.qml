@@ -56,10 +56,10 @@ ApplicationWindow
         property bool showFeed: true
         property bool showFriends: true
         property bool showSearch: true
-        property bool showLikedPages: true
+        property bool showLikedPages: false
         property bool showRefresh: false
         property int placeBack: 0
-        property int theme: 0
+        property int theme: 1 // Facebook theme, as in the original store screenshots
         property int scrollScreens: 3 // limit: results stop after this many screens
     }
 }

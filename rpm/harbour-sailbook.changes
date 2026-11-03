@@ -10,7 +10,8 @@
 
 * Tue Nov 03 2026 Sailbook contributors 13.0-0
 - Original Sailbook app restored (menu bar, loading screen, pulldown menu, settings
-  dialog, about/translators pages, cover, themes); content drawn natively in Silica
+  dialog, about/translators pages, cover, themes, start-up screen); default theme
+  Facebook; content drawn natively in the style of the Facebook mobile site
 - Search without a Facebook account (public Facebook links on Wikidata)
 - No login and no connection to Meta at all; messenger, notifications, events,
   groups, counters removed; results capped by scroll limit

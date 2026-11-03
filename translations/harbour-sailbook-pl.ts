@@ -28,8 +28,8 @@
         <translation>Wstecz</translation>
     </message>
     <message>
-        <source>Search</source>
-        <translation>Szukaj</translation>
+        <source>Search Facebook</source>
+        <translation>Szukaj na Facebooku</translation>
     </message>
     <message>
         <source>People</source>

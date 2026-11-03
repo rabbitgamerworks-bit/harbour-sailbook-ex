@@ -4,11 +4,26 @@ import "../js/util.js" as Util
 import "../components"
 
 Page {
+    id: firstPage
     SearchView {
         id: fbWebview
         anchors { left: parent.left; right: parent.right; top: parent.top; bottom: navigation.top }
         visible: opacity > 0
         Behavior on opacity { FadeAnimation {} }
+    }
+
+    // Original Sailbook start-up screen (cover artwork and progress bar in
+    // the theme colour) shown while the app starts, as before.
+    Item {
+        z: 1
+        anchors { left: parent.left; right: parent.right; top: parent.top; bottom: navigation.top }
+        visible: startup.opacity > 0
+
+        PlaceholderWebview {
+            id: startup
+            // Count from the moment the page is really on screen.
+            Timer { interval: 1500; running: firstPage.status === PageStatus.Active; onTriggered: startup.opacity = 0.0 }
+        }
     }
 
     Rectangle {
