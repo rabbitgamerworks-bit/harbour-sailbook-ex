@@ -6,6 +6,6 @@ Exec=harbour-sailbook
 Name=Sailbook
 
 [X-Sailjail]
-Permissions=Internet;WebView
+Permissions=Internet
 OrganizationName=org.sailbook
 ApplicationName=harbour-sailbook

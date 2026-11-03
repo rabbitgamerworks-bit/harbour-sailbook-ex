@@ -10,13 +10,15 @@ ApplicationWindow {
     allowedOrientations: defaultAllowedOrientations
 
     property string appName: "Sailbook"
-    property string version: "12.0"
+    property string version: "13.0"
 
     ConfigurationGroup {
         id: settings
         path: "/apps/harbour-sailbook/settings"
 
-        // How far a page may be scrolled, in screen heights.
+        // How far search results go, in screens (about 6 results per screen).
         property int scrollScreens: 3
+        // 0 = Ambience, 1 = Facebook, 2 = Night (classic Sailbook themes)
+        property int theme: 1
     }
 }

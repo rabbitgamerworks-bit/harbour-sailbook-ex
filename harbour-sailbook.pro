@@ -11,9 +11,14 @@ DISTFILES += \
     qml/harbour-sailbook.qml \
     qml/cover/CoverPage.qml \
     qml/pages/SearchPage.qml \
+    qml/pages/ResultPage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/AboutPage.qml \
-    qml/js/guard.js \
+    qml/components/Avatar.qml \
+    qml/components/NavigationButton.qml \
+    qml/js/backend.js \
+    qml/js/themes.js \
+    qml/images/*.svg \
     rpm/harbour-sailbook.spec \
     rpm/harbour-sailbook.changes \
     harbour-sailbook.desktop

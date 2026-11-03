@@ -13,7 +13,7 @@ Name:       harbour-sailbook
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Sailbook
-Version:    12.0
+Version:    13.0
 Release:    0
 Group:      Qt/Qt
 License:    GPLv3
@@ -22,9 +22,6 @@ Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-sailbook.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   nemo-qml-plugin-configuration-qt5
-Requires:   sailfish-components-webview-qt5
-Requires:   sailfish-components-webview-qt5-popups
-Requires:   sailfish-components-webview-qt5-pickers
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -32,7 +29,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Sailbook: search-only m.facebook.com wrapper for Sailfish OS (no feed)
+Sailbook: native search-only Facebook client UI for Sailfish OS (no feed)
 
 
 %prep

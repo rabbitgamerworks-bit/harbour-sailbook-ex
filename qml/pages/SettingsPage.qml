@@ -19,6 +19,17 @@ Page {
 
             PageHeader { title: qsTr("Settings") }
 
+            ComboBox {
+                label: qsTr("Theme")
+                currentIndex: settings.theme
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Ambience") }
+                    MenuItem { text: qsTr("Facebook") }
+                    MenuItem { text: qsTr("Night") }
+                }
+                onCurrentIndexChanged: settings.theme = currentIndex
+            }
+
             Slider {
                 width: parent.width
                 label: qsTr("Scroll limit (screens)")
@@ -36,7 +47,7 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.secondaryHighlightColor
-                text: qsTr("Pages can only be scrolled this many screens down, so results never turn into an endless feed.")
+                text: qsTr("Search results stop after this many screens, so they never turn into an endless feed.")
             }
         }
     }

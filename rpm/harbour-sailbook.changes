@@ -8,6 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Nov 03 2026 Sailbook contributors 13.0-0
+- Native Silica search UI instead of the m.facebook.com web page
+- Classic Sailbook menu bar, icons and themes (Ambience, Facebook, Night) restored
+- Search results are capped (scroll limit), still no feed
+- Mockup: sample data only, backend prepared for facebook-gql-scraper style results
+
 * Tue Nov 03 2026 Sailbook contributors 12.0-0
 - Rewritten as a search-only wrapper around m.facebook.com (Sailfish.WebView / Gecko)
 - Dropped QtWebKit, user-agent spoofing, injected themes, notification scraping and video player

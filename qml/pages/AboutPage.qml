@@ -19,7 +19,7 @@ Page {
             Label {
                 width: parent.width
                 wrapMode: Text.Wrap
-                text: qsTr("Sailbook is a search-only wrapper around m.facebook.com for Sailfish OS. There is no feed: only search, with limited scrolling.")
+                text: qsTr("Sailbook is a native, search-only Facebook client UI for Sailfish OS. There is no feed: only search, with limited scrolling. This version is a mockup that shows sample data.")
             }
 
             Label {
