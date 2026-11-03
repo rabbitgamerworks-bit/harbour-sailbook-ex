@@ -15,6 +15,8 @@
 - Search without a Facebook account (public Facebook links on Wikidata)
 - No login and no connection to Meta at all; messenger, notifications, events,
   groups, counters removed; results capped by scroll limit
+- Pasted Facebook links: page address read from the link (share links: one request
+  without login or cookies), looked up on Wikidata, with a suggestion where to add it
 - "Ożywione przez Claude" 
 
 * Tue Nov 03 2026 Sailbook contributors 12.0-0

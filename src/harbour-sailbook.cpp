@@ -1,12 +1,42 @@
 #include <sailfishapp.h>
 #include <QGuiApplication>
 #include <QNetworkAccessManager>
+#include <QNetworkCookie>
+#include <QNetworkCookieJar>
+#include <QRegularExpression>
 #include <QNetworkProxyFactory>
 #include <QNetworkRequest>
 #include <QQmlEngine>
 #include <QQmlNetworkAccessManagerFactory>
 #include <QQuickView>
 #include <QScopedPointer>
+
+// Never stores or sends cookies for Facebook / Meta: when Sailbook reads the
+// page address behind a pasted share link, Facebook cannot recognise or track
+// the user, and there is no session that could ever be logged in.
+static bool isMetaHost(const QUrl &url)
+{
+    static const QRegularExpression meta(QStringLiteral(
+        "(^|\\.)(facebook\\.com|fb\\.com|fb\\.me|fb\\.watch|fbcdn\\.net|messenger\\.com|instagram\\.com|meta\\.com)$"),
+        QRegularExpression::CaseInsensitiveOption);
+    return meta.match(url.host()).hasMatch();
+}
+
+class SailbookCookieJar : public QNetworkCookieJar
+{
+public:
+    using QNetworkCookieJar::QNetworkCookieJar;
+
+    QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const override
+    {
+        return isMetaHost(url) ? QList<QNetworkCookie>() : QNetworkCookieJar::cookiesForUrl(url);
+    }
+
+    bool setCookiesFromUrl(const QList<QNetworkCookie> &cookies, const QUrl &url) override
+    {
+        return isMetaHost(url) ? false : QNetworkCookieJar::setCookiesFromUrl(cookies, url);
+    }
+};
 
 // Identifies Sailbook honestly to the services it talks to (Wikimedia asks
 // every client for a descriptive User-Agent). No browser impersonation.
@@ -30,7 +60,9 @@ class SailbookNetworkFactory : public QQmlNetworkAccessManagerFactory
 public:
     QNetworkAccessManager *create(QObject *parent) override
     {
-        return new SailbookNetworkAccessManager(parent);
+        SailbookNetworkAccessManager *manager = new SailbookNetworkAccessManager(parent);
+        manager->setCookieJar(new SailbookCookieJar(manager));
+        return manager;
     }
 };
 

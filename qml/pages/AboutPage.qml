@@ -21,7 +21,7 @@ Page {
             TextLabel { labelText: qsTr("Sailbook is an unofficial Facebook client for Sailfish OS.") }
 
             SectionHeader { text: "Ożywione przez Claude" }
-            TextLabel { labelText: qsTr("This fork only searches. There is no login, no news feed, no messenger and no notifications, and scrolling is limited. Sailbook never connects to Facebook: pages and people are found through their public Facebook addresses on Wikidata, so no account is needed and nothing can get an account banned.") }
+            TextLabel { labelText: qsTr("This fork only searches. There is no login, no news feed, no messenger and no notifications, and scrolling is limited. Pages and people are found through their public Facebook addresses on Wikidata, so no account is needed and nothing can get an account banned. Only when you paste a Facebook share link, Sailbook asks facebook.com once for the address of the page, without login and without cookies.") }
             TextLabel { labelFontSize: Theme.fontSizeExtraSmall; color: Theme.secondaryHighlightColor; labelText: qsTr("Data: Wikidata (CC0). Pictures: Wikimedia Commons.") }
 
             IconTextButton {

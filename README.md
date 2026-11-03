@@ -16,13 +16,20 @@ menu, settings dialog, about/translators pages, cover and themes, restored from
 [DylanVanAssche/harbour-sailbook](https://github.com/DylanVanAssche/harbour-sailbook))
 and changes what it shows:
 
-- **No account, no login, ever.** Sailbook never connects to Facebook or any other
-  Meta service, so there is nothing to log into and nothing that could get an account
-  banned. Pages and people are found through their public Facebook usernames on
+- **No account, no login, ever.** There is nothing to log into and nothing that could
+  get an account banned. Sailbook only talks to facebook.com to read the page address
+  behind a pasted share link (see below). Pages and people are found through their public Facebook usernames on
   [Wikidata](https://www.wikidata.org/wiki/Property:P2013) (one SPARQL query, CC0 data,
   pictures from Wikimedia Commons). This covers organisations and public figures
   (universities, cities, media...), not private profiles or posts.
 - **No news feed.** The feed button shows an empty page; content only appears when you search.
+- **Pasted Facebook links.** A direct page link (facebook.com/name) already contains
+  the page address, so Sailbook looks it up on Wikidata without contacting Facebook.
+  A share link (facebook.com/share/..., fb.me, fb.watch) needs one request to
+  facebook.com, without login and without cookies (Sailbook never stores or sends
+  cookies for Meta domains); only the public page address and name are read.
+  If the page has no Facebook address on Wikidata yet, Sailbook suggests the
+  Wikidata entry where it can be added (property P2013).
 - **Removed**: messenger, notifications, events, groups, the Facebook settings button,
   logout, the video player and all unread counters (menu bar and cover).
 - **Limited scrolling.** Results stop after a configurable number of screens

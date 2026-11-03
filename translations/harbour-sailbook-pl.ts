@@ -4,8 +4,8 @@
 <context>
     <name>SearchView</name>
     <message>
-        <source>Sailbook does not open Facebook links: it never connects to Facebook and needs no account. Search for the name of the page instead.</source>
-        <translation>Sailbook nie otwiera linków do Facebooka: nigdy nie łączy się z Facebookiem i nie potrzebuje konta. Wyszukaj zamiast tego nazwę strony.</translation>
+        <source>Sailbook does not open links to Instagram, Messenger or other Meta services.</source>
+        <translation>Sailbook nie otwiera linków do Instagrama, Messengera ani innych serwisów Mety.</translation>
     </message>
     <message>
         <source>No network</source>
@@ -18,6 +18,18 @@
     <message>
         <source>No results. Sailbook only finds pages and people whose Facebook address is public on Wikidata.</source>
         <translation>Brak wyników. Sailbook znajduje tylko strony i osoby, których adres na Facebooku jest publicznie zapisany w Wikidanych.</translation>
+    </message>
+    <message>
+        <source>Could not read the page address from this link. Search for the name of the page instead.</source>
+        <translation>Nie udało się odczytać adresu strony z tego linku. Wyszukaj zamiast tego nazwę strony.</translation>
+    </message>
+    <message>
+        <source>Page from the link: facebook.com/%1</source>
+        <translation>Strona z linku: facebook.com/%1</translation>
+    </message>
+    <message>
+        <source>%1 is not on Wikidata with its Facebook address yet, so Sailbook cannot show it. Anyone can add the address (property P2013) on Wikidata.</source>
+        <translation>%1 nie ma jeszcze w Wikidanych swojego adresu na Facebooku, więc Sailbook nie może jej pokazać. Każdy może dopisać ten adres (właściwość P2013) w Wikidanych.</translation>
     </message>
     <message>
         <source>About</source>
@@ -59,6 +71,14 @@
         <source>End of results.</source>
         <translation>Koniec wyników.</translation>
     </message>
+    <message>
+        <source>Add it on Wikidata: %1 (%2)</source>
+        <translation>Dopisz w Wikidanych: %1 (%2)</translation>
+    </message>
+    <message>
+        <source>Find it on Wikidata: %1</source>
+        <translation>Znajdź w Wikidanych: %1</translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -86,8 +106,8 @@
         <translation>Sailbook to nieoficjalny klient Facebooka dla Sailfish OS.</translation>
     </message>
     <message>
-        <source>This fork only searches. There is no login, no news feed, no messenger and no notifications, and scrolling is limited. Sailbook never connects to Facebook: pages and people are found through their public Facebook addresses on Wikidata, so no account is needed and nothing can get an account banned.</source>
-        <translation>Ten fork służy tylko do wyszukiwania. Nie ma logowania, tablicy aktualności, messengera ani powiadomień, a przewijanie jest ograniczone. Sailbook nigdy nie łączy się z Facebookiem: strony i osoby są wyszukiwane po ich publicznych adresach na Facebooku zapisanych w Wikidanych, więc konto nie jest potrzebne i nic nie grozi banem konta.</translation>
+        <source>This fork only searches. There is no login, no news feed, no messenger and no notifications, and scrolling is limited. Pages and people are found through their public Facebook addresses on Wikidata, so no account is needed and nothing can get an account banned. Only when you paste a Facebook share link, Sailbook asks facebook.com once for the address of the page, without login and without cookies.</source>
+        <translation>Ten fork służy tylko do wyszukiwania. Nie ma logowania, tablicy aktualności, messengera ani powiadomień, a przewijanie jest ograniczone. Strony i osoby są wyszukiwane po ich publicznych adresach na Facebooku zapisanych w Wikidanych, więc konto nie jest potrzebne i nic nie grozi banem konta. Tylko gdy wkleisz link udostępniania z Facebooka, Sailbook raz pyta facebook.com o adres strony, bez logowania i bez ciasteczek.</translation>
     </message>
     <message>
         <source>Data: Wikidata (CC0). Pictures: Wikimedia Commons.</source>

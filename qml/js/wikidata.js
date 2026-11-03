@@ -22,6 +22,10 @@ function _sparqlString(text) {
 }
 
 function buildQuery(query, filter, limit, language) {
+    return _query(String(query).trim() + " haswbstatement:P2013", filter, limit, language);
+}
+
+function _query(srsearch, filter, limit, language) {
     var lang = language && /^[a-z-]+$/.test(language) ? language + ",en" : "en";
     var max = Math.max(1, Math.min(50, Math.round(Number(limit) || 1)));
     // Ask for more than needed: some hits get filtered out below.
@@ -31,7 +35,7 @@ function buildQuery(query, filter, limit, language) {
         "SELECT ?item ?itemLabel ?itemDescription ?fb ?img ?logo ?web ?inception ?typeLabel ?placeLabel ?human ?ord WHERE {",
         "  SERVICE wikibase:mwapi {",
         '    bd:serviceParam wikibase:api "Search"; wikibase:endpoint "www.wikidata.org";',
-        "                    mwapi:srsearch " + _sparqlString(String(query).trim() + " haswbstatement:P2013") + "; mwapi:srlimit \"" + fetch + "\".",
+        "                    mwapi:srsearch " + _sparqlString(srsearch) + "; mwapi:srlimit \"" + fetch + "\".",
         "    ?item wikibase:apiOutputItem mwapi:title. ?ord wikibase:apiOrdinal true.",
         "  }",
         "  ?item wdt:P2013 ?fb.",
@@ -46,6 +50,104 @@ function buildQuery(query, filter, limit, language) {
 
 function buildUrl(query, filter, limit, language) {
     return ENDPOINT + "?format=json&query=" + encodeURIComponent(buildQuery(query, filter, limit, language));
+}
+
+// ---------------------------------------------------------------------------
+// Facebook links -> Facebook page address (username) -> Wikidata.
+//
+// The only thing Sailbook ever reads from facebook.com is the address of the
+// page a pasted link belongs to. For a direct page link it is in the link
+// itself (no request at all). Only share links (facebook.com/share/...,
+// fb.me, fb.watch...) need ONE request without login and without cookies,
+// and from the answer only the public page address and name are used.
+// ---------------------------------------------------------------------------
+
+var FB_HOST = /^(https?:\/\/)?([a-z0-9-]+\.)*(facebook\.com|fb\.com|fb\.me|fb\.watch)(\/|$)/i;
+// First path parts that are not page addresses.
+var FB_NOT_A_PAGE = ["share", "sharer", "sharer.php", "story.php", "permalink.php", "photo", "photo.php",
+    "photos", "video.php", "videos", "watch", "reel", "reels", "groups", "events", "login", "login.php",
+    "l.php", "home.php", "search", "hashtag", "messages", "notifications", "marketplace", "gaming",
+    "stories", "dialog", "plugins", "help", "policies", "privacy", "settings", "friends", "bookmarks"];
+
+function isFacebookLink(text) {
+    return FB_HOST.test(String(text || "").trim());
+}
+
+// Page address from a Facebook URL, or "" when the link has to be resolved.
+function facebookUsername(url) {
+    var t = String(url || "").trim();
+    if (!/^https?:\/\//i.test(t)) t = "https://" + t;
+    var m = /^https?:\/\/([^\/?#]+)([^?#]*)(\?[^#]*)?/i.exec(t);
+    if (!m || !FB_HOST.test(m[1] + "/")) return "";
+    if (/(^|\.)(fb\.me|fb\.watch)$/i.test(m[1])) return "";
+    var parts = m[2].split("/").filter(function (x) { return x.length > 0 });
+    var query = m[3] || "";
+    if (parts.length === 0) return "";
+    var first = decodeURIComponent(parts[0]);
+    if (first === "profile.php") {
+        var id = /[?&]id=(\d+)/.exec(query);
+        return id ? id[1] : "";
+    }
+    if (first === "people" && parts.length >= 3 && /^\d+$/.test(parts[2])) return parts[2];
+    if (first === "pages" && parts.length >= 3 && /^\d+$/.test(parts[parts.length - 1])) return parts[parts.length - 1];
+    if (FB_NOT_A_PAGE.indexOf(first.toLowerCase()) >= 0) return "";
+    return /^[A-Za-z0-9.\-]{2,80}$/.test(first) ? first : "";
+}
+
+function _decodeEntities(text) {
+    return String(text)
+        .replace(/&#x([0-9a-f]+);/gi, function (m, h) { return String.fromCodePoint ? String.fromCodePoint(parseInt(h, 16)) : String.fromCharCode(parseInt(h, 16)) })
+        .replace(/&#(\d+);/g, function (m, d) { return String.fromCodePoint ? String.fromCodePoint(parseInt(d, 10)) : String.fromCharCode(parseInt(d, 10)) })
+        .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&#039;/g, "'")
+        .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+}
+
+function _meta(html, property) {
+    var re = new RegExp('<meta[^>]+property="' + property + '"[^>]+content="([^"]*)"', "i");
+    var m = re.exec(html);
+    return m ? _decodeEntities(m[1]) : "";
+}
+
+// Reads only the page address and the page name from a public Facebook page.
+function parseFacebookPage(html) {
+    var url = _meta(html, "og:url");
+    var title = _meta(html, "og:title").replace(/\s+\|.*$/, "").trim();
+    return { username: facebookUsername(url), title: title };
+}
+
+// Wikidata entities whose Facebook address (P2013) is exactly `username`.
+function buildLookupUrl(username, language) {
+    return ENDPOINT + "?format=json&query=" + encodeURIComponent(
+        _query("haswbstatement:P2013=" + String(username).replace(/[^A-Za-z0-9.\-]/g, ""), "all", 5, language));
+}
+
+// Wikidata entries that match a page name but have no Facebook address yet:
+// the place where the address could be added.
+function buildCandidatesUrl(name, language) {
+    var lang = language && /^[a-z-]+$/.test(language) ? language : "en";
+    var clean = String(name).replace(/["\u201c\u201d\u201e\u00ab\u00bb]/g, "").replace(/\s+/g, " ").trim();
+    var q = [
+        "SELECT ?item ?itemLabel ?itemDescription ?ord WHERE {",
+        "  SERVICE wikibase:mwapi {",
+        '    bd:serviceParam wikibase:api "EntitySearch"; wikibase:endpoint "www.wikidata.org";',
+        "                    mwapi:search " + _sparqlString(clean) + '; mwapi:language "' + lang + '".',
+        "    ?item wikibase:apiOutputItem mwapi:item. ?ord wikibase:apiOrdinal true.",
+        "  }",
+        "  FILTER NOT EXISTS { ?item wdt:P2013 ?fb }",
+        '  SERVICE wikibase:label { bd:serviceParam wikibase:language "' + lang + ',en". }',
+        "} ORDER BY ?ord LIMIT 3"
+    ].join("\n");
+    return ENDPOINT + "?format=json&query=" + encodeURIComponent(q);
+}
+
+function parseCandidates(json) {
+    var data = typeof json === "string" ? JSON.parse(json) : json;
+    var rows = (data && data.results && data.results.bindings) || [];
+    return rows.map(function (b) {
+        var id = _v(b, "item").replace(/^.*\//, "");
+        return { id: id, label: _v(b, "itemLabel") || id, description: _v(b, "itemDescription"),
+                 url: "https://www.wikidata.org/wiki/" + id };
+    });
 }
 
 // Sailbook never links to Meta services (no login screens, no tracking).
