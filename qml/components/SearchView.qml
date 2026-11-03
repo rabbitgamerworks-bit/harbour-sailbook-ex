@@ -16,6 +16,7 @@ Item {
     property string filter: "all"      // "all", "profile" or "page"
     property bool loading
     property string note
+    property string info   // shown under the results: "no results", "links not opened"...
     readonly property int resultLimit: settings.scrollScreens * 6
     property var history: []
     property Item searchFieldItem
@@ -55,7 +56,14 @@ Item {
         results.clear()
         app.resultCount = 0
         note = ""
+        info = ""
         if (query.length === 0) { loading = false; return }
+        if (Wd.isMetaLink(query)) {
+            // Opening it would mean connecting to Facebook (login wall, risk of a ban).
+            loading = false
+            info = qsTr("Sailbook does not open Facebook links: it never connects to Facebook and needs no account. Search for the name of the page instead.")
+            return
+        }
         loading = true
         var id = ++_request
         var xhr = new XMLHttpRequest()
@@ -70,6 +78,7 @@ Item {
                 var items = Wd.parse(xhr.responseText, Qt.md5, root.resultLimit)
                 for (var i = 0; i < items.length; i++) results.append(items[i])
                 app.resultCount = items.length
+                if (items.length === 0) root.info = qsTr("No results. Sailbook only finds pages and people whose Facebook address is public on Wikidata.")
             } catch (e) {
                 root.note = qsTr("Search failed (%1)").arg("JSON")
             }
@@ -278,8 +287,8 @@ Item {
 
         footer: Item {
             width: list.width
-            height: results.count > 0 ? limitLabel.height + 2 * Theme.paddingLarge : 0
-            visible: results.count > 0
+            height: visible ? limitLabel.height + 2 * Theme.paddingLarge : 0
+            visible: results.count > 0 || root.info.length > 0
 
             Text {
                 id: limitLabel
@@ -289,7 +298,8 @@ Item {
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: page.secondary
-                text: results.count >= root.resultLimit
+                text: root.info.length > 0 ? root.info
+                      : results.count >= root.resultLimit
                       ? qsTr("Scroll limit reached: %1 results. Refine your search to see others.").arg(results.count)
                       : qsTr("End of results.")
             }

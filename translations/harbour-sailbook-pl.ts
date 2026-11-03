@@ -4,12 +4,20 @@
 <context>
     <name>SearchView</name>
     <message>
+        <source>Sailbook does not open Facebook links: it never connects to Facebook and needs no account. Search for the name of the page instead.</source>
+        <translation>Sailbook nie otwiera linków do Facebooka: nigdy nie łączy się z Facebookiem i nie potrzebuje konta. Wyszukaj zamiast tego nazwę strony.</translation>
+    </message>
+    <message>
         <source>No network</source>
         <translation>Brak sieci</translation>
     </message>
     <message>
         <source>Search failed (%1)</source>
         <translation>Wyszukiwanie nie powiodło się (%1)</translation>
+    </message>
+    <message>
+        <source>No results. Sailbook only finds pages and people whose Facebook address is public on Wikidata.</source>
+        <translation>Brak wyników. Sailbook znajduje tylko strony i osoby, których adres na Facebooku jest publicznie zapisany w Wikidanych.</translation>
     </message>
     <message>
         <source>About</source>

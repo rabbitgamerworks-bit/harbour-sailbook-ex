@@ -53,6 +53,14 @@ function _isMeta(url) {
     return /^https?:\/\/([^\/]*\.)?(facebook\.com|fb\.com|fb\.me|messenger\.com|instagram\.com|threads\.net|meta\.com|whatsapp\.com)(\/|$)/i.test(String(url));
 }
 
+// True when the search text is a link to a Meta service (e.g. a pasted
+// facebook.com/share/... link). Sailbook never opens those.
+function isMetaLink(text) {
+    var t = String(text || "").trim();
+    if (!/^https?:\/\//i.test(t)) t = "https://" + t;
+    return _isMeta(t);
+}
+
 function _v(binding, key) {
     return binding[key] ? String(binding[key].value) : "";
 }
